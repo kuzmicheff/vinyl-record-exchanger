@@ -70,17 +70,23 @@ namespace VinylRecordExchanger
             }
             else
             {
+                member.setFirstName();
+                member.setLastName();
                 member.setUserName();
                 member.setPassword();
             }
-
 
             Console.WriteLine(member.getFirstName());
             Console.WriteLine(member.getLastName());
             Console.WriteLine(member.getUserName());
             Console.WriteLine(member.getPassword());
 
+
+            Community community = new Community();
+
+            community.addMember(member.getFirstName(), member.getLastName(), member.getUserName(), member.getPassword());
             
+            //Console.WriteLine(community.getCommunity()); 
 
             //Console.WriteLine(member.getFirstName());
             //Console.WriteLine(member.getLastName());
