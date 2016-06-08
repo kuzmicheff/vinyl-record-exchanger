@@ -2,9 +2,15 @@
 
 Vinyl record exchanger in C#. This application enables a community of vinyl record aficionados to showcase their collections, trade or rent records, and browse the community pool for inspiration. 
 
+This project should be equal or comparable to the default Humane Society engine. The following ideas have come up.
+
+0. ~~Community beatbox sampler: application that allows users to record beatboxing samples on a virtual 8x8 pad (non-visual in the project version), listen to samples, contribute to projects, and export project files for DAW processing.~~
+0. Record exchange platform: application that allows users to contribute their records to the common pool for others to rent or own. There would be an inventory, purchases and rentals, etc.
+0. ~~Bakery order processing: application that allows placing bakery orders by selecting base items and their customizations from the bakery menu. Upon successful order placement, the customer and bakery staff would receive the order email, and customer would be charged a sale amount.~~
+
 ## Project overview 
 
-0. The *community* consists of *members* who showcase and trade their vinyl *records*.
+0. The *community* consists of *members* who showcase, trade, and exchange their vinyl *records*.
 0. The community *pool* consists of members' records marked for sale or for rent.
 0. Every community member must have (register) an *account* to participate. 
 0. Each member has an *account balance (wallet)* containing the user's *credits (currency, dollars)* allowing him or her to purchase or rent records from the community pool. 
@@ -25,6 +31,8 @@ Vinyl record exchanger in C#. This application enables a community of vinyl reco
 
 ## Class overview
 
+0. *Member* is an individual who has an established account in the community.
+0. *Community* is the list of all community members. It is used to identify existing members using the app over multiple sessions.
 0. *Credit* is the currency used for all transactions within the app. Credits are assigned the decimal type with rounding to two digits. 
 0. *Wallet* is the container which stores and updates the member's balances in credits. 
 0. *Rating* is the average of all ratings received as a buyer or seller. 
@@ -43,3 +51,16 @@ Vinyl record exchanger in C#. This application enables a community of vinyl reco
 0. *Track length* is the time duration of a track.
 0. *Track side* is the side assignment of a track (A or B)
 0. *Track number* is the numeric index of the track on the specific side of a record. 
+
+## Development plan
+
+0. ~~Create the Credit class~~ [Credit does not need to be set up as a class; it can be set up as a variable inside the Wallet class.]
+0. Create the Wallet class
+ 0. Wallet has a balance which is a decimal amount in credits. 
+ 0. Credits can be deposited into wallet with the *depositCredits()* method.
+ 0. Credits can be withdrawn from wallet with the *withdrawCredits()* method. 
+ 0. The current account balance can be checked with *checkBalance()* method. 
+0. Create the Member class
+ 0. Member has the following attributes: first name, last name, username, password, rating, wallet, and collection (list). 
+0. Create the Community class
+0. Create the Collection class
