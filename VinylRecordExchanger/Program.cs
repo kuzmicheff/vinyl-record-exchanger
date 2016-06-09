@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace VinylRecordExchanger
 {
@@ -34,10 +35,6 @@ namespace VinylRecordExchanger
                 Console.WriteLine(readError.Message);
                 errorFile.Close();
             }
-
-            //Alternative way to read text from a file.
-            //string title = File.ReadAllText("files/title.txt");
-            //Console.WriteLine(title);
 
             ConsoleKeyInfo userSelection = Console.ReadKey(true);
             string userMode;
@@ -87,10 +84,8 @@ namespace VinylRecordExchanger
             community.addMember(member.getFirstName(), member.getLastName(), member.getUserName(), member.getPassword());
             
             //Console.WriteLine(community.getCommunity()); 
-
             //Console.WriteLine(member.getFirstName());
             //Console.WriteLine(member.getLastName());
-
             //Console.WriteLine(member.wallet.getBalance());
             //member.wallet.depositCredits(10);
             //Console.WriteLine(member.wallet.getBalance());
