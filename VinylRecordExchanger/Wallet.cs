@@ -22,7 +22,7 @@ namespace VinylRecordExchanger
 
         public void withdrawCredits(decimal credits)
         {
-            if(this.balance - credits < 0)
+            if (this.balance - credits < 0)
             {
                 Console.WriteLine("Insufficient Funds!");
             }

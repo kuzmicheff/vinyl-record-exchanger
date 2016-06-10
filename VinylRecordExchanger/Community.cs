@@ -3,36 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace VinylRecordExchanger
 {
-    class Community
+    class Community : IEquatable<Community>
     {
-        string community;
+        public int memberId;
+        public string fullName;
+        public string userName;
+        public string password;
+        public decimal rating;
+        public decimal wallet;
+        public List<Collection> collection;
 
-        public void addMember(string firstName, string lastName, string userName, string password)
+
+        public Community(int memberId, string fullName, string userName, string password, decimal rating, decimal wallet, List<Collection> collection)
         {
-            // add a member to the community
-            string fName = firstName;
-            string lName = lastName;
-            string uName = userName;
-            string pWord = password;
-            string line = string.Format("{0},{1},{2},{3}", fName, lName, uName, pWord);
-            StreamWriter community = File.AppendText("files/community.txt");
-            community.WriteLine(line);
-            Console.WriteLine(community);
-            community.Close();
+            this.memberId = memberId;
+            this.fullName = fullName;
+            this.userName = userName;
+            this.password = password;
+            this.rating = rating;
+            this.wallet = wallet;
+            this.collection = collection;
         }
 
-        public void removeMember(string member)
+        public bool Equals(Community other)
         {
-            // remove a member from the community
-        }
-
-        public string getCommunity()
-        {
-            return this.community;
+            if (other == null) return false;
+            return (this.memberId.Equals(other.memberId));
         }
     }
 }
