@@ -8,11 +8,11 @@ namespace VinylRecordExchanger
 {
     class Wallet
     {
-        decimal balance;
+        public decimal balance;
 
-        public Wallet()
+        public Wallet(decimal balance)
         {
-            this.balance = 0;
+            this.balance = balance;
         }
 
         public void depositCredits(decimal credits)
@@ -32,9 +32,9 @@ namespace VinylRecordExchanger
             }
         }
 
-        public decimal getBalance()
-        {
-            return this.balance;
-        }
+        //public decimal getBalance()
+        //{
+        //    return this.balance;
+        //}
     }
 }

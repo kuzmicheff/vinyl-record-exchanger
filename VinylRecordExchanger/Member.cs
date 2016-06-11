@@ -8,49 +8,52 @@ namespace VinylRecordExchanger
 {
     class Member
     {
-        //string firstName;
-        //string lastName;
-        //string userName;
-        //string password;
-        //double rating;
-        //public Wallet wallet;
-        //public Collection collection;
+        public int memberId;
+        public string firstName;
+        public string lastName;
+        public string fullName;
+        public string userName;
+        public string password;
+        public decimal rating;
+        public Wallet wallet;
+        public List<Collection> collection;
 
-        //public Member(string firstName, string lastName, string userName, string password)
+        public Member()
+        {
+            
+        }
+
+        //public Member(int memberId, string fullName, string userName, string password, decimal rating, decimal wallet, List<Collection> collection)
         //{
-        //    this.firstName = firstName;
-        //    this.lastName = lastName;
+        //    this.memberId = memberId;
+        //    this.fullName = fullName;
         //    this.userName = userName;
         //    this.password = password;
-        //    //The rating assignment needs to be modified, when implementing transaction ratings.
-        //    this.rating = 0.00; 
-        //    this.wallet = new Wallet();
-        //    this.collection = new Collection();
+        //    this.rating = rating;
+        //    this.wallet = new Wallet(wallet);
+        //    this.collection = collection;
         //}
 
-        //public void setFirstName()
-        //{
-        //    Console.WriteLine("Please enter your first name: ");
-        //    this.firstName = Console.ReadLine();
-        //}
+        public void setFullName()
+        {
+            Console.WriteLine("Please enter your first name: ");
+            this.firstName = Console.ReadLine();
+            Console.WriteLine("Please enter your last name: ");
+            this.lastName = Console.ReadLine();
+            this.fullName = string.Format("{0} {1}", firstName, lastName);
+        }
 
-        //public void setLastName()
-        //{
-        //    Console.WriteLine("Please enter your last name: ");
-        //    this.lastName = Console.ReadLine();
-        //}
+        public void setUserName()
+        {
+            Console.WriteLine("Please enter your username: ");
+            this.userName = Console.ReadLine();
+        }
 
-        //public void setUserName()
-        //{
-        //    Console.WriteLine("Please enter your username: ");
-        //    this.userName = Console.ReadLine();
-        //}
-
-        //public void setPassword()
-        //{
-        //    Console.WriteLine("Please enter your password: ");
-        //    this.password = Console.ReadLine();
-        //}
+        public void setPassword()
+        {
+            Console.WriteLine("Please enter your password: ");
+            this.password = Console.ReadLine();
+        }
 
         //public string getFirstName()
         //{

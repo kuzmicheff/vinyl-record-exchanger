@@ -9,8 +9,8 @@ namespace VinylRecordExchanger
     class Collection : IEquatable<Collection>
     {
         public int recordId;
-        public decimal? salePrice;
-        public decimal? rentPrice;
+        public decimal salePrice;
+        public decimal rentPrice;
         public string albumArtist;
         public string albumTitle;
         public string releaseDate;
