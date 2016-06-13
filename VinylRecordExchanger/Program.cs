@@ -56,7 +56,7 @@ namespace VinylRecordExchanger
                 }
                 else
                 {
-                    Console.WriteLine("Please enter yes or no to continue: ");
+                    Console.WriteLine("Please enter yes or no to continue:");
                     userSelection = Console.ReadLine();
                 }
             }
@@ -70,6 +70,8 @@ namespace VinylRecordExchanger
             {
                 members = new List<Community>();
             }
+
+            string currentMember;
 
             //register a new member
             if (userMode == "new member")
@@ -86,17 +88,66 @@ namespace VinylRecordExchanger
 
                 Community member = new Community(newMember.memberId, newMember.fullName, newMember.userName, newMember.password, newMember.rating, newMember.wallet.balance, newMember.collection);
                 members.Add(member);
-
-                Console.WriteLine("Updating app data\n");
-                string dataExport = JsonConvert.SerializeObject(members);
-                File.WriteAllText("files/community.json", dataExport);
+                currentMember = newMember.userName;
             }
             //authenticate an existing member
             else
             {
-                Console.WriteLine("Existing member!");
-            }
+                Member existingMember = new Member();
 
+                //check username
+
+                existingMember.setUserName();
+
+                List<string> currentMembers = new List<string>();
+
+                foreach (Community member in members)
+                {
+                    currentMembers.Add(member.userName);
+                }
+
+                while (true)
+                {
+                    if (currentMembers.Contains(existingMember.userName))
+                    {
+                        currentMember = existingMember.userName;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The username is invalid!");
+                        existingMember.setUserName();
+                    }
+                }
+
+                int currentIndex = currentMembers.IndexOf(currentMember);
+
+                //check password
+
+                existingMember.setPassword();
+
+                List<string> currentPasswords = new List<string>();
+
+                foreach (Community member in members)
+                {
+                    currentPasswords.Add(member.password);
+                }
+
+                while (true)
+                {
+                    if (existingMember.password == currentPasswords[currentIndex])
+                    {
+                        Console.WriteLine("You have logged in successfully!");
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("The password is invalid!");
+                        existingMember.setPassword();
+                    }
+                }
+            }
+            
             //list the entire community with collections
             Console.WriteLine("Community members\n");
             foreach (Community member in members)
@@ -130,6 +181,10 @@ namespace VinylRecordExchanger
                     }
                 }
             }
+
+            Console.WriteLine("Updating app data\n");
+            string dataExport = JsonConvert.SerializeObject(members);
+            File.WriteAllText("files/community.json", dataExport);
 
             //Temporary line for testing output of other values to the screen.
             Console.ReadKey();

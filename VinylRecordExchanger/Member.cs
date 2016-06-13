@@ -36,22 +36,22 @@ namespace VinylRecordExchanger
 
         public void setFullName()
         {
-            Console.WriteLine("Please enter your first name: ");
+            Console.WriteLine("Please enter your first name:");
             this.firstName = Console.ReadLine();
-            Console.WriteLine("Please enter your last name: ");
+            Console.WriteLine("Please enter your last name:");
             this.lastName = Console.ReadLine();
             this.fullName = string.Format("{0} {1}", firstName, lastName);
         }
 
         public void setUserName()
         {
-            Console.WriteLine("Please enter your username: ");
+            Console.WriteLine("Please enter your username:");
             this.userName = Console.ReadLine();
         }
 
         public void setPassword()
         {
-            Console.WriteLine("Please enter your password: ");
+            Console.WriteLine("Please enter your password:");
             this.password = Console.ReadLine();
         }
 
