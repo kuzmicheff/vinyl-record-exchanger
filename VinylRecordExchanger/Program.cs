@@ -104,6 +104,7 @@ namespace VinylRecordExchanger
                 Community member = new Community(newMember.memberId, newMember.fullName, newMember.userName, newMember.password, newMember.rating, newMember.wallet.balance, newMember.collection);
                 members.Add(member);
                 currentMember = newMember.userName;
+                currentMembers.Add(currentMember);
                 currentIndex = currentMembers.IndexOf(currentMember);
             }
             //authenticate an existing member
@@ -163,7 +164,7 @@ namespace VinylRecordExchanger
             Console.WriteLine("Full name: " + activeMember.fullName);
             Console.WriteLine("Username: " + activeMember.userName);
             Console.WriteLine("Rating: " + activeMember.rating);
-            Console.WriteLine("Wallet: $" + activeMember.wallet);
+            Console.WriteLine("Wallet: $" + activeMember.wallet.balance);
             Console.WriteLine("Record collection\n");
             foreach (Collection record in activeMember.collection)
             {
@@ -186,7 +187,7 @@ namespace VinylRecordExchanger
                     Console.WriteLine("Track length: " + track.trackLength + "\n");
                 }
             }
-            
+
             //list the entire community with collections
             //Console.WriteLine("Community members\n");
             //foreach (Community member in members)
@@ -226,6 +227,7 @@ namespace VinylRecordExchanger
             File.WriteAllText("files/community.json", dataExport);
 
             //Temporary line for testing output of other values to the screen.
+            Console.WriteLine("Press any key to close the app:");
             Console.ReadKey();
         }
     }
