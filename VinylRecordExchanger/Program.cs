@@ -71,7 +71,22 @@ namespace VinylRecordExchanger
                 members = new List<Community>();
             }
 
+            List<string> currentMembers = new List<string>();
+
+            foreach (Community member in members)
+            {
+                currentMembers.Add(member.userName);
+            }
+
+            List<string> currentPasswords = new List<string>();
+
+            foreach (Community member in members)
+            {
+                currentPasswords.Add(member.password);
+            }
+
             string currentMember;
+            int currentIndex;
 
             //register a new member
             if (userMode == "new member")
@@ -89,6 +104,7 @@ namespace VinylRecordExchanger
                 Community member = new Community(newMember.memberId, newMember.fullName, newMember.userName, newMember.password, newMember.rating, newMember.wallet.balance, newMember.collection);
                 members.Add(member);
                 currentMember = newMember.userName;
+                currentIndex = currentMembers.IndexOf(currentMember);
             }
             //authenticate an existing member
             else
@@ -98,13 +114,6 @@ namespace VinylRecordExchanger
                 //check username
 
                 existingMember.setUserName();
-
-                List<string> currentMembers = new List<string>();
-
-                foreach (Community member in members)
-                {
-                    currentMembers.Add(member.userName);
-                }
 
                 while (true)
                 {
@@ -120,18 +129,11 @@ namespace VinylRecordExchanger
                     }
                 }
 
-                int currentIndex = currentMembers.IndexOf(currentMember);
+                currentIndex = currentMembers.IndexOf(currentMember);
 
                 //check password
 
                 existingMember.setPassword();
-
-                List<string> currentPasswords = new List<string>();
-
-                foreach (Community member in members)
-                {
-                    currentPasswords.Add(member.password);
-                }
 
                 while (true)
                 {
@@ -147,40 +149,77 @@ namespace VinylRecordExchanger
                     }
                 }
             }
-            
-            //list the entire community with collections
-            Console.WriteLine("Community members\n");
-            foreach (Community member in members)
+
+            Member activeMember = new Member();
+            activeMember.memberId = members[currentIndex].memberId;
+            activeMember.fullName = members[currentIndex].fullName;
+            activeMember.userName = members[currentIndex].userName;
+            activeMember.password = members[currentIndex].password;
+            activeMember.rating = members[currentIndex].rating;
+            activeMember.wallet = new Wallet(members[currentIndex].wallet);
+            activeMember.collection = members[currentIndex].collection;
+
+            Console.WriteLine("Member profile");
+            Console.WriteLine("Full name: " + activeMember.fullName);
+            Console.WriteLine("Username: " + activeMember.userName);
+            Console.WriteLine("Rating: " + activeMember.rating);
+            Console.WriteLine("Wallet: $" + activeMember.wallet);
+            Console.WriteLine("Record collection\n");
+            foreach (Collection record in activeMember.collection)
             {
-                Console.WriteLine("Member ID: " + member.memberId);
-                Console.WriteLine("Full name: " + member.fullName);
-                Console.WriteLine("Username: " + member.userName);
-                Console.WriteLine("Password: " + member.password);
-                Console.WriteLine("Rating: " + member.rating);
-                Console.WriteLine("Wallet: $" + member.wallet + "\n");
-                Console.WriteLine("Record collection\n");
-                foreach (Collection record in member.collection)
+                Console.WriteLine("Record ID: " + record.recordId);
+                Console.WriteLine("Sale price: $" + record.salePrice);
+                Console.WriteLine("Rent price: $" + record.rentPrice);
+                Console.WriteLine("Album artist: " + record.albumArtist);
+                Console.WriteLine("Album title: " + record.albumTitle);
+                Console.WriteLine("Release date: " + record.releaseDate);
+                Console.WriteLine("Musical genre: " + record.musicalGenre);
+                Console.WriteLine("Record format: " + record.recordFormat);
+                Console.WriteLine("Side A speed: " + record.sideASpeed);
+                Console.WriteLine("Side B speed: " + record.sideBSpeed + "\n");
+                Console.WriteLine("Record tracklist\n");
+                foreach (Tracklist track in record.tracklist)
                 {
-                    Console.WriteLine("Record ID: " + record.recordId);
-                    Console.WriteLine("Sale price: $" + record.salePrice);
-                    Console.WriteLine("Rent price: $" + record.rentPrice);
-                    Console.WriteLine("Album artist: " + record.albumArtist);
-                    Console.WriteLine("Album title: " + record.albumTitle);
-                    Console.WriteLine("Release date: " + record.releaseDate);
-                    Console.WriteLine("Musical genre: " + record.musicalGenre);
-                    Console.WriteLine("Record format: " + record.recordFormat);
-                    Console.WriteLine("Side A speed: " + record.sideASpeed);
-                    Console.WriteLine("Side B speed: " + record.sideBSpeed + "\n");
-                    Console.WriteLine("Record tracklist\n");
-                    foreach (Tracklist track in record.tracklist)
-                    {
-                        Console.WriteLine("Track ID: " + track.trackId);
-                        Console.WriteLine("Track number: " + track.trackSide + Convert.ToString(track.trackNumber));
-                        Console.WriteLine("Track title: " + track.trackTitle);
-                        Console.WriteLine("Track length: " + track.trackLength + "\n");
-                    }
+                    Console.WriteLine("Track ID: " + track.trackId);
+                    Console.WriteLine("Track number: " + track.trackSide + Convert.ToString(track.trackNumber));
+                    Console.WriteLine("Track title: " + track.trackTitle);
+                    Console.WriteLine("Track length: " + track.trackLength + "\n");
                 }
             }
+            
+            //list the entire community with collections
+            //Console.WriteLine("Community members\n");
+            //foreach (Community member in members)
+            //{
+            //    Console.WriteLine("Member ID: " + member.memberId);
+            //    Console.WriteLine("Full name: " + member.fullName);
+            //    Console.WriteLine("Username: " + member.userName);
+            //    Console.WriteLine("Password: " + member.password);
+            //    Console.WriteLine("Rating: " + member.rating);
+            //    Console.WriteLine("Wallet: $" + member.wallet + "\n");
+            //    Console.WriteLine("Record collection\n");
+            //    foreach (Collection record in member.collection)
+            //    {
+            //        Console.WriteLine("Record ID: " + record.recordId);
+            //        Console.WriteLine("Sale price: $" + record.salePrice);
+            //        Console.WriteLine("Rent price: $" + record.rentPrice);
+            //        Console.WriteLine("Album artist: " + record.albumArtist);
+            //        Console.WriteLine("Album title: " + record.albumTitle);
+            //        Console.WriteLine("Release date: " + record.releaseDate);
+            //        Console.WriteLine("Musical genre: " + record.musicalGenre);
+            //        Console.WriteLine("Record format: " + record.recordFormat);
+            //        Console.WriteLine("Side A speed: " + record.sideASpeed);
+            //        Console.WriteLine("Side B speed: " + record.sideBSpeed + "\n");
+            //        Console.WriteLine("Record tracklist\n");
+            //        foreach (Tracklist track in record.tracklist)
+            //        {
+            //            Console.WriteLine("Track ID: " + track.trackId);
+            //            Console.WriteLine("Track number: " + track.trackSide + Convert.ToString(track.trackNumber));
+            //            Console.WriteLine("Track title: " + track.trackTitle);
+            //            Console.WriteLine("Track length: " + track.trackLength + "\n");
+            //        }
+            //    }
+            //}
 
             Console.WriteLine("Updating app data\n");
             string dataExport = JsonConvert.SerializeObject(members);
